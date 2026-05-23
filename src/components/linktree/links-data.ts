@@ -76,7 +76,7 @@ export const links: LinkItem[] = [
   {
     id: "resume",
     title: "Resume",
-    url: "https://example.com/resume.pdf",
+    url: "https://drive.google.com/file/d/1PXMLi-e8znUU7Hd8xqW_BeaSCBUs2FuA/view?usp=sharing",
     description: "Full work history, skills, and education",
     icon: FileText,
     facets: [
@@ -115,8 +115,8 @@ export const links: LinkItem[] = [
   {
     id: "linkedin",
     title: "LinkedIn",
-    url: "https://linkedin.com/in/example",
-    description: "linkedin.com/in/example",
+    url: "https://linkedin.com/in/selam-mitike",
+    description: "linkedin.com/in/selam-mitike",
     icon: Linkedin,
     facets: [
       {
@@ -136,8 +136,8 @@ export const links: LinkItem[] = [
   {
     id: "github",
     title: "GitHub",
-    url: "https://github.com/example",
-    description: "github.com/example",
+    url: "https://github.com/smitike",
+    description: "github.com/smitike",
     icon: Github,
     facets: [
       {
@@ -163,7 +163,7 @@ export const links: LinkItem[] = [
   {
     id: "research",
     title: "Research Paper",
-    url: "#",
+    url: "https://github.com/smitike/pytorch-GAT/blob/main/REU_AI_and_Quantum_Computing.pdf",
     description: "Unpublished · AI-Empowered Cybersecurity · UMKC-NSF",
     icon: BookOpen,
     facets: [
@@ -184,7 +184,7 @@ export const links: LinkItem[] = [
   {
     id: "hackathon",
     title: "Hackathon Project",
-    url: "https://example.com/hackathon",
+    url: "https://devpost.com/software/atlas-ahvp9x",
     description: "24 hour NVIDIA x ASUS · NemoClaw",
     icon: Rocket,
     facets: [
