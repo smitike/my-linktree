@@ -26,6 +26,12 @@ export type LinkItem = {
   icon: LucideIcon;
   /** Facets the smart search can match against. */
   facets: LinkFacet[];
+  /** Optional additional metadata (can be populated from real pages). */
+  meta?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+  };
 };
 
 /**
@@ -59,6 +65,9 @@ export const conceptGraph: Record<string, string[]> = {
     "models", "llm", "llms", "deep learning", "neural network", "neural",
     "inference", "training",
   ],
+  gnn: [
+    "gnn", "graph neural network", "graph attention network", "gat", "graph attention", "graph networks",
+  ],
   research: [
     "research", "paper", "academic", "publication", "study", "experiment",
     "aiea", "lab", "thesis",
@@ -78,6 +87,11 @@ export const links: LinkItem[] = [
     title: "Resume",
     url: "https://drive.google.com/file/d/1PXMLi-e8znUU7Hd8xqW_BeaSCBUs2FuA/view?usp=sharing",
     description: "Full work history, skills, and education",
+    meta: {
+      title: "Selam Mitike — Resume",
+      description: "Downloadable resume with work history, skills, and education.",
+      keywords: ["resume", "cv", "experience", "education"],
+    },
     icon: FileText,
     facets: [
       {
@@ -88,9 +102,9 @@ export const links: LinkItem[] = [
       },
       {
         label: "AIEA Research Member",
-        concepts: ["research", "kubernetes", "docker", "virtual desktops", "devops", "ai"],
+        concepts: ["research", "docker", "virtual desktops", "devops", "ai", "gnn"],
         explanation:
-          "Deployed AI research virtual desktops on Kubernetes, containerizing workloads with Docker and shipping a self-serve provisioning flow.",
+          "Deployed AI research virtual desktops and worked with graph neural network (GNN) models such as GAT during research projects.",
       },
       {
         label: "Frontend Internship",
@@ -117,13 +131,18 @@ export const links: LinkItem[] = [
     title: "LinkedIn",
     url: "https://linkedin.com/in/selam-mitike",
     description: "linkedin.com/in/selam-mitike",
+    meta: {
+      title: "Selam Mitike — LinkedIn",
+      description: "Professional profile and connections for Selam Mitike.",
+      keywords: ["professional", "network", "resume", "recommendations"],
+    },
     icon: Linkedin,
     facets: [
       {
         label: "Professional Network",
-        concepts: ["network", "career"],
+        concepts: ["network", "career", "gnn"],
         explanation:
-          "Best place to connect, see mutual contacts, and browse the high-level career timeline.",
+          "Best place to connect, see mutual contacts, and browse the high-level career timeline; includes research/skill highlights.",
       },
       {
         label: "Recommendations",
@@ -138,6 +157,11 @@ export const links: LinkItem[] = [
     title: "GitHub",
     url: "https://github.com/smitike",
     description: "github.com/smitike",
+    meta: {
+      title: "smitike — GitHub",
+      description: "Open-source contributions and projects by Selam Mitike.",
+      keywords: ["open source", "projects", "code", "repos"],
+    },
     icon: Github,
     facets: [
       {
@@ -169,9 +193,9 @@ export const links: LinkItem[] = [
     facets: [
       {
         label: "AIEA Research (Unpublished)",
-        concepts: ["research", "ai", "kubernetes", "virtual desktops"],
+        concepts: ["research", "ai", "virtual desktops", "gnn"],
         explanation:
-          "Co-authored draft exploring how ML workloads run on Kubernetes-backed virtual desktops — reach out for a copy.",
+          "Co-authored draft exploring ML workloads and Graph Attention Networks (GAT) — reach out for a copy.",
       },
       {
         label: "Methodology",

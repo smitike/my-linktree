@@ -67,9 +67,9 @@
 :root {
   --radius: 1rem;
   /* Dark brown + gold palette, warm and bold. */
-  --background: oklch(20.258% 0.05309 37.94 / 0.831);
+  --background: oklch(15.326% 0.01953 40.367 / 0.831);
   --foreground: oklch(0.97 0.02 80);
-  --card: oklch(0.26 0.04 55 / 0.78);
+  --card: oklch(27.589% 0.04301 55.863 / 0.85);
   --card-foreground: oklch(0.97 0.02 80);
   --popover: oklch(0.22 0.04 55);
   --popover-foreground: oklch(0.97 0.02 80);

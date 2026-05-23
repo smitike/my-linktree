@@ -75,6 +75,143 @@ export function searchLinks(query: string, links: LinkItem[]): SearchResult {
   const cleaned = query.trim();
   if (!cleaned) return { query, matches: [], summary: "" };
 
+  // Hardcoded deterministic mappings for specific queries requested by the user.
+  const lc = cleaned.toLowerCase();
+  if (lc === "can-bus" || lc.includes("can-bus") || lc.includes("can bus") || lc.includes("canbus")) {
+    const resume = links.find((l) => l.id === "resume");
+    if (resume) {
+      return {
+        query: cleaned,
+        matches: [
+          {
+            linkId: resume.id,
+            label: "Software Engineer Inten",
+            explanation:
+              "Worked on CAN-bus diagnostic and automatically error reporting service.",
+            score: 999,
+          },
+        ],
+        summary: `Found 1 relevant link for "${cleaned}".`,
+      };
+    }
+  }
+  if (lc === "hackathon" || lc.includes("hackathon")) {
+    const hack = links.find((l) => l.id === "hackathon");
+    if (hack) {
+      return {
+        query: cleaned,
+        matches: [
+          {
+            linkId: hack.id,
+            label: "Contributed on frontend",
+            explanation:
+              "Built a security camera with Nemoclaw LLM for specific commands and alerts.",
+            score: 999,
+          },
+        ],
+        summary: `Found 1 relevant link for "${cleaned}".`,
+      };
+    }
+  }
+  // Explicit mapping for the phrase "debugging skills" per user request.
+  if (lc === "debugging skills" || lc.includes("debugging skills")) {
+    const resume = links.find((l) => l.id === "resume");
+    if (resume) {
+      return {
+        query: cleaned,
+        matches: [
+          {
+            linkId: resume.id,
+            label: "Software Engineer Intern",
+            explanation:
+              "Helped 6+ customers troubleshoot issues with their robots.",
+            score: 998,
+          },
+        ],
+        summary: `Found 1 relevant link for "${cleaned}".`,
+      };
+    }
+  }
+  // Hardcoded mapping for GNN experience queries: match resume, research, and github.
+  if (
+    lc === "experience working with gnn models" ||
+    lc.includes("experience working with gnn") ||
+    lc.includes("experience with gnn") ||
+    lc.includes("gnn models")
+  ) {
+    const matches = [] as SearchMatch[];
+    const resume = links.find((l) => l.id === "resume");
+    const research = links.find((l) => l.id === "research");
+    const github = links.find((l) => l.id === "github");
+    if (resume) {
+      matches.push({
+        linkId: resume.id,
+        label: "Research Fellow",
+        explanation:
+          "Improved GAT mode classification accracy by 15%.",
+        score: 999,
+      });
+    }
+    if (research) {
+      matches.push({
+        linkId: research.id,
+        label: "Co-authored",
+        explanation:
+          "Compared GAT model performance with Feedforward for network intrusion detection and classification.",
+        score: 999,
+      });
+      matches.push({
+        linkId: research.id,
+        label: "Methodology",
+        explanation:
+          "GAT model for Cora dataset was adapted for use with Smart Home Network dataset.",
+        score: 997,
+      });
+    }
+    if (github) {
+      matches.push({
+        linkId: github.id,
+        label: "Repository",
+        explanation:
+          "Contains GAT model implementations and experiments used in the associated research.",
+        score: 996,
+      });
+    }
+    return {
+      query: cleaned,
+      matches,
+      summary: `Found ${matches.length} relevant links for "${cleaned}".`,
+    };
+  }
+
+  // Hardcoded mapping for "Working with robots" to match resume and LinkedIn.
+  if (lc === "working with robots" || lc.includes("working with robots") || lc.includes("robots")) {
+    const matches = [] as SearchMatch[];
+    const resume = links.find((l) => l.id === "resume");
+    const linkedin = links.find((l) => l.id === "linkedin");
+    if (resume) {
+      matches.push({
+        linkId: resume.id,
+        label: "Software Engineer Intern",
+        explanation: "Built a diagnostic service for robotic systems.",
+        score: 999,
+      });
+    }
+    if (linkedin) {
+      matches.push({
+        linkId: linkedin.id,
+        label: "Post from 08/2025",
+        explanation: "Posted experience on working with Amiga robots.",
+        score: 998,
+      });
+    }
+    return {
+      query: cleaned,
+      matches,
+      summary: `Found ${matches.length} relevant links for "${cleaned}".`,
+    };
+  }
+
   const wanted = inferConcepts(cleaned);
   const matches: SearchMatch[] = [];
 
@@ -85,15 +222,27 @@ export function searchLinks(query: string, links: LinkItem[]): SearchResult {
       for (const concept of facet.concepts) {
         score += wanted.get(concept) ?? 0;
       }
+      // Note: metadata-based boosts removed; using only facet concepts and hardcoded mappings.
       if (score > 0 && (!best || score > best.score)) {
         best = { facet, score };
       }
     }
     if (best) {
+      // Build explanation from the matching facet only (no metadata/snippets).
+      const matchedConcepts: string[] = [];
+      for (const c of best.facet.concepts) {
+        if ((wanted.get(c) ?? 0) > 0) matchedConcepts.push(c);
+      }
+
+      let explanation = best.facet.explanation;
+      if (matchedConcepts.length) {
+        explanation = `Related to ${matchedConcepts.join(", ")}: ${explanation}`;
+      }
+
       matches.push({
         linkId: link.id,
         label: best.facet.label,
-        explanation: best.facet.explanation,
+        explanation,
         score: best.score,
       });
     }
@@ -103,7 +252,7 @@ export function searchLinks(query: string, links: LinkItem[]): SearchResult {
 
   const summary =
     matches.length === 0
-      ? `No clear matches for "${cleaned}". Try terms like "debugging", "Kubernetes", or "frontend".`
+      ? `No clear matches for "${cleaned}". Try terms like "debugging", "frontend", or "Experience with GNN".`
       : matches.length === 1
         ? `Found 1 relevant link for "${cleaned}".`
         : `Found ${matches.length} relevant links for "${cleaned}".`;

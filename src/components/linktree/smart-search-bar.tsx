@@ -12,7 +12,7 @@ type Props = {
   hasResult: boolean;
 };
 
-const suggestions = ["CAN-bus", "debugging", "Kubernetes", "Python", "Working with robots"];
+const suggestions = ["CAN-bus", "debugging skills", "experience working with GNN models", "Working with robots"];
 
 export function SmartSearchBar({
   value,

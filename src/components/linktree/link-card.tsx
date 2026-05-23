@@ -7,11 +7,10 @@ type Props = {
   index: number;
   highlighted: boolean;
   dimmed: boolean;
-  matchLabel?: string;
-  explanation?: string;
+  matchEntries?: Array<{ label: string; explanation: string }>;
 };
 
-export function LinkCard({ link, index, highlighted, dimmed, matchLabel, explanation }: Props) {
+export function LinkCard({ link, index, highlighted, dimmed, matchEntries }: Props) {
   const Icon = link.icon;
 
   return (
@@ -64,20 +63,22 @@ export function LinkCard({ link, index, highlighted, dimmed, matchLabel, explana
         />
       </a>
 
-      {highlighted && explanation && (
-        <div
-          role="note"
-          className="mt-2 ml-2 flex items-start gap-2 rounded-xl border border-primary/30 bg-primary/10 px-3 py-2 text-[13px] leading-relaxed text-foreground/90 animate-fade-up backdrop-blur-sm"
-        >
-          <span className="mt-0.5 text-primary">↳</span>
-          <span>
-            {matchLabel && (
-              <span className="font-semibold text-foreground">[{matchLabel}]: </span>
-            )}
-            {explanation}
-          </span>
-        </div>
-      )}
+      {highlighted &&
+        (matchEntries ?? []).map((entry, idx) => (
+          <div
+            key={`${entry.label}-${idx}`}
+            role="note"
+            className="mt-2 ml-2 flex items-start gap-2 rounded-xl border border-primary/30 bg-primary/10 px-3 py-2 text-[13px] leading-relaxed text-foreground/90 animate-fade-up backdrop-blur-sm"
+          >
+            <span className="mt-0.5 text-primary">↳</span>
+            <span>
+              {entry.label && (
+                <span className="font-semibold text-foreground">[{entry.label}]: </span>
+              )}
+              {entry.explanation}
+            </span>
+          </div>
+        ))}
     </li>
   );
 }

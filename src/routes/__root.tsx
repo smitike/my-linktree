@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { profile } from "@/components/linktree/links-data";
+import { links } from "@/components/linktree/links-data";
 
 function NotFoundComponent() {
   return (
@@ -95,10 +97,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const sameAs = links.map((l) => l.url).filter(Boolean);
+  const jsonLd = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    description: profile.bio,
+    jobTitle: profile.status,
+    address: profile.location,
+    sameAs,
+  });
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json">{jsonLd}</script>
       </head>
       <body>
         {children}
