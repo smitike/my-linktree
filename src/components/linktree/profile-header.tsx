@@ -38,9 +38,9 @@ export function ProfileHeader() {
       </p>
       <p className="mt-3 inline-flex flex-wrap items-center justify-center gap-2 text-[15px] leading-relaxed text-foreground/85">
         <span className="relative inline-flex items-center gap-2">
-          <span className="relative flex h-2.5 w-2.5">
+          <span className="relative flex h-3 w-3">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-highlight opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-highlight" />
+            <span className="relative inline-flex h-3 w-3.5 rounded-full bg-highlight" />
           </span>
           <span className="font-medium">{profile.status}</span>
         </span>

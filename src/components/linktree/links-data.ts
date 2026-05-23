@@ -205,7 +205,7 @@ export const links: LinkItem[] = [
 ];
 
 export const profile = {
-  name: "Alex Chen",
+  name: "Selam Mitike",
   bio: "Software engineer · AIEA researcher · building thoughtful interfaces.",
   location: "San Jose, CA",
   status: "CS student @UCSC",

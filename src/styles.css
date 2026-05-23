@@ -67,7 +67,7 @@
 :root {
   --radius: 1rem;
   /* Dark brown + gold palette, warm and bold. */
-  --background: oklch(0.16 0.03 55);
+  --background: oklch(20.258% 0.05309 37.94 / 0.831);
   --foreground: oklch(0.97 0.02 80);
   --card: oklch(0.26 0.04 55 / 0.78);
   --card-foreground: oklch(0.97 0.02 80);
@@ -91,10 +91,10 @@
   --ring: oklch(0.78 0.16 80);
   --gradient-bg:
     radial-gradient(circle at 12% -5%, oklch(0.30 0.08 55) 0%, transparent 45%),
-    radial-gradient(circle at 90% 10%, oklch(0.45 0.13 75) 0%, transparent 50%),
+    radial-gradient(circle at 90% 10%, oklch(0.30 0.06 55) 0%, transparent 50%),
     radial-gradient(circle at 50% 110%, oklch(0.28 0.06 55) 0%, transparent 60%),
     oklch(0.10 0.03 50);
-  --gradient-primary: linear-gradient(135deg, oklch(0.82 0.17 85), oklch(0.70 0.14 70));
+  --gradient-primary: linear-gradient(135deg, oklch(85.777% 0.15445 93.064 / 0.878), oklch(79.992% 0.10384 72.445 / 0.62));
   --shadow-soft: 0 1px 2px oklch(0.05 0.02 50 / 0.6), 0 6px 20px oklch(0.05 0.02 50 / 0.45);
   --shadow-card: 0 2px 6px oklch(0.05 0.02 50 / 0.6), 0 18px 44px oklch(0.05 0.02 50 / 0.55);
   --shadow-glow: 0 0 0 4px oklch(0.78 0.16 80 / 0.28), 0 10px 36px oklch(0.78 0.16 80 / 0.45);
