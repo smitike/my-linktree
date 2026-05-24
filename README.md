@@ -4,7 +4,7 @@ Live Demo: https://selam-linktree.netlify.app/
 
 Running Locally
 - Clone the repository `git clone <repo-url>`
-- Navigate into the project `cd <project-name>`
+- Navigate into the project `cd my-linktree`
 - Install dependencies `npm install`
 - Start with `npm run dev`
 
