@@ -148,7 +148,7 @@ export function searchLinks(query: string, links: LinkItem[]): SearchResult {
         linkId: resume.id,
         label: "Research Fellow",
         explanation:
-          "Improved GAT mode classification accracy by 15%.",
+          "Improved GAT model classification accuracy by 15%.",
         score: 999,
       });
     }
