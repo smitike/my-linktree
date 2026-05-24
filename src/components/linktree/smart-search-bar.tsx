@@ -104,6 +104,10 @@ export function SmartSearchBar({
               {s}
             </button>
           ))}
+          <div className="flex items-center">
+            <span className="ml-1 rounded-full h-2 w-2 bg-primary/73 inline-block mr-2" />
+            <span className="text-xs text-muted-foreground">Mock Data</span>
+          </div>
         </div>
       )}
 
